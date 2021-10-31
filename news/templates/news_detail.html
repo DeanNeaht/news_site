@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{{ news.title }}{% endblock %}
+{% block content %}
+    <div><h1>{{ news.title }}</h1></div>
+    <div>
+        {% if news.photo %}
+                    {% if news.author.username == 'Parser' %}
+                          <img src="{{ news.photo }}" class="card-img-top" alt="..." width="500" height="150">
+                        {% else %}
+  <img src="{{ news.photo.url }}" class="card-img-top" alt="..." width="500" height="150">
+                        {% endif %}
+    {% else %}
+    <img src="https://icdn.lenta.ru/images/2021/04/27/16/20210427163138131/square_320_c09ebae17387b7d6eeb9fa0d42afe5ee.jpg" class="card-img-top" alt="..." width="500" height="250">
+    {% endif %}
+    </div>
+    <div><p>Автор: {{ news.author.username }}</p></div>
+    <div class="mt-4">{{ news.text }}</div>
+    <div class="mt-3">
+    <p>Последнее обновление: {{ news.updated_at }}</p>
+    {% if user.is_authenticated and user.pk == news.author.pk or user.is_superuser %}
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <a class="btn btn-primary" href="{% url 'update_news' pk=news.pk %}" role="button">Редактировать</a>
+        <a class="btn btn-danger" href="{% url 'delete_news' pk=news.pk %}" role="button">Удалить</a>
+
+</div>
+    {% endif %}
+    </div>
+{% endblock %}

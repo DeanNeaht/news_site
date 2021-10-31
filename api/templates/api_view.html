@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Документация API{% endblock %}
+{% block content %}
+<p>&nbsp;</p>
+<h1><strong>Документация API</strong><strong></strong></h1>
+<p><strong>Введение</strong></p>
+<p>Public API и Private API представляют собой удобное средство взаимодействия с сайтом стороннего програмного обеспечения.</p>
+<p>-Public API используется для получения информации, не требущая доступа к личной информации аккаунта</p>
+<p>-Private API используется для добавления, изменения, удаления новостей, а так же для получения информации, для которой необходим доступ к личным данным аккаунта.</p>
+    <p><strong><h3>Public API</h3></strong></p>
+<p>В настоящий момент Public API существует в одной единственной версии.</p>
+<p>Возможности:</p>
+<ul>
+<li><a href="#all_news">Получение всех новостей</a></li>
+<li><a href="#cat_news">Получение новостей в определенной категории</a></li>
+<li><a href="#one_news">Получение конкретной новости</a></li>
+<li><a href="#user_news">Получение новостей опреденного пользователя</a></li>
+</ul>
+<p><a name="all_news"></a>Получение всех новостей</p>
+<p>Чтобы получить все новости, необходимо перейти по ссылке:</p>
+<p>https://dogy-bot.xyz/<span>news/</span></p>
+    <p><a name="cat_news"></a><strong>Получение новостей в определенной категории</strong><a name="cat_news"></a></p>
+<p>Чтобы получить все новости в определенной категории необходимо, перейти по ссылке:</p>
+<p>https://dogy-bot.xyz/<span>news/{category}/</span></p>
+<p><span>Список категорий:</span></p>
+<ul>
+<li>politics</li>
+<li>culture</li>
+<li>science</li>
+<li>society</li>
+<li>economy</li>
+<li>other</li>
+</ul>
+    <p><a name="one_news"></a><strong>Получение конкретной новости</strong><a name="one_news"></a></p>
+<p>Чтобы получить конкретную новость, необходимо знать id новости:</p>
+<p>https://dogy-bot.xyz/<span>news/detail/{id}/</span></p>
+    <p><a name="user_news"></a><strong>Получение новостей определнного пользователя</strong></p>
+    <p>Все новости пользователя можно узнать по его username.</p>
+<p>https://dogy-bot.xyz/<span>user/{username}/</span></p>
+    <p><strong><h3>Private Api</h3></strong></p>
+<p>Private API необходим для осуществления создания, редактирования, удаления новостей, а так же получения информации, для которой необходим доступ к личным данным аккаунта.</p>
+<p>Для использования Trade API необходимо получить токен в <a href="{% if user.is_authenticated %}{% url 'user_info'  pk=user.pk %}{% else %}{% url 'login' %}{% endif %}">личном кабинете</a>.<br />Токен используется для аутентификации пользоваткля.</p>
+<p>Адрес для отправки запросов Trade API:&nbsp;</p>
+<p>Для каждого запроса нужна аутентификация.</p>
+<p>Все ответы сервер отдаёт в формате JSON</p>
+{% endblock %}

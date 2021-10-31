@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Удаление статьи{% endblock %}
+
+{% block content %}
+<p>Вы уверены, что хотите это удалить "{{ object }}"?</p>
+
+{% include 'form.html' with button='Удалить' %}
+
+{% endblock %}

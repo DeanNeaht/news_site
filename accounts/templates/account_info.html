@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Личные данные</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Имя пользователя</th>
+      <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Фамилия</th>
+      <td>{{ user.last_name }}</td>
+    </tr>
+      <tr>
+      <th scope="row">Имя</th>
+      <td>{{ user.first_name }}</td>
+    </tr>
+      <tr>
+      <th scope="row">Электронная почта</th>
+      <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>
+    <p>Ваш токен для доступа к API:
+    <p>{{ token }}</p>
+    </p>
+    {% if news %}
+<h2>Ваши статьи:</h2>
+{% for obj in news %}
+    <p><a href="{% url 'detail_news' pk=obj.pk %}">{{ obj.title }}</a></p>
+{% endfor %}
+
+{% else %}
+{% endif %}
+
+{% endblock %}
